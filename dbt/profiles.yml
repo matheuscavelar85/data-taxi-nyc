@@ -8,5 +8,5 @@ taxi_pipeline:
       dbname: "{{ env_var('DB_NAME', 'analytics_warehouse') }}"
       user: "{{ env_var('DB_USER', 'dbt_user') }}"
       password: "{{ env_var('DB_PASSWORD', 'dbt_password') }}"
-      schema: dbt_dev_silver
+      schema: dbt_dev
       threads: 4
