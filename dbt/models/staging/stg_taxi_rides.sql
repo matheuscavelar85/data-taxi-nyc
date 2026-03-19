@@ -13,7 +13,10 @@ cleaned as (
             coalesce(pickup_datetime, '') || '-' ||
             coalesce(cast(pickup_longitude as varchar), '') || '-' ||
             coalesce(cast(pickup_latitude as varchar), '') || '-' ||
-            coalesce(cast(passenger_count as varchar), '')
+            coalesce(cast(dropoff_longitude as varchar), '') || '-' ||
+            coalesce(cast(dropoff_latitude as varchar), '') || '-' ||
+            coalesce(cast(passenger_count as varchar), '') || '-' ||
+            coalesce(cast(fare_amount as varchar), '')
         ) as ride_id,
         pickup_datetime,
         pickup_longitude,
