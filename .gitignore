@@ -1,0 +1,17 @@
+dbt/target/
+dbt/logs/
+dbt/dbt_packages/
+dbt/.user.yml
+dbt/graph_summary.json
+dbt/graph.gpickle
+dbt/partial_parse.msgpack
+dbt/run_results.json
+dbt/semantic_manifest.json
+dbt/httpfs.duckdb.extension.gz
+
+__pycache__/
+*.pyc
+
+data/train.csv
+
+.env

@@ -1,0 +1,4 @@
+dbt-core==1.7.0
+dbt-postgres==1.7.0
+pandas==1.5.3
+psycopg2-binary==2.9.9

@@ -1,0 +1,12 @@
+taxi_pipeline:
+  target: dev
+  outputs:
+    dev:
+      type: postgres
+      host: "{{ env_var('DB_HOST', 'postgres-dbt') }}"
+      port: "{{ env_var('DB_PORT', '5432') | int }}"
+      dbname: "{{ env_var('DB_NAME', 'analytics_warehouse') }}"
+      user: "{{ env_var('DB_USER', 'dbt_user') }}"
+      password: "{{ env_var('DB_PASSWORD', 'dbt_password') }}"
+      schema: dbt_dev_silver
+      threads: 4
