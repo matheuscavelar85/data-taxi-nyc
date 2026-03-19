@@ -1,0 +1,61 @@
+version: 2
+
+sources:
+  - name: raw
+    description: "Dados brutos ingeridos do Kafka em Parquet"
+    schema: raw
+    tables:
+      - name: taxi_rides
+        description: "Corridas de táxi brute force do NYC Taxi"
+        columns:
+          - name: pickup_datetime
+            description: "Data e hora do início da corrida"
+          - name: pickup_longitude
+            description: "Longitude do ponto de pickup"
+          - name: pickup_latitude
+            description: "Latitude do ponto de pickup"
+          - name: dropoff_longitude
+            description: "Longitude do ponto de dropoff"
+          - name: dropoff_latitude
+            description: "Latitude do ponto de dropoff"
+          - name: passenger_count
+            description: "Número de passageiros"
+          - name: fare_amount
+            description: "Valor da tarifa"
+          - name: ingestion_timestamp
+            description: "Timestamp de ingestão no sistema"
+
+models:
+  - name: stg_taxi_rides
+    description: "Staging model - Limpeza e validação de corridas"
+    columns:
+      - name: ride_id
+        description: "ID único de cada corrida"
+        tests:
+          - unique
+          - not_null
+      - name: pickup_datetime
+        description: "Data e hora do pickup"
+      - name: dropoff_datetime
+        description: "Data e hora do dropoff (calculado)"
+      - name: trip_distance
+        description: "Distância da corrida em km"
+      - name: passenger_count
+        description: "Número de passageiros"
+      - name: fare_amount
+        description: "Valor da tarifa"
+
+  - name: fct_rides
+    description: "Fact table - Corridas realizadas"
+    columns:
+      - name: ride_id
+        description: "ID único de cada corrida"
+        tests:
+          - unique
+          - not_null
+
+  - name: dim_locations
+    description: "Dimensão - Localizações de pickup e dropoff"
+
+  - name: agg_daily_metrics
+    description: "Agregação diária de métricas de corridas"

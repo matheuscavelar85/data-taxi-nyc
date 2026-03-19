@@ -1,0 +1,16 @@
+FROM apache/airflow:2.7.0-python3.9
+
+USER root
+RUN apt-get update && apt-get install -y --no-install-recommends \
+        libpq-dev gcc \
+    && apt-get autoremove -yqq --purge \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
+
+USER airflow
+RUN pip install --no-cache-dir \
+    apache-airflow-providers-docker==3.7.0 \
+    boto3==1.26.0 \
+    botocore==1.29.0 \
+    psycopg2-binary==2.9.9 \
+    dbt-postgres==1.7.0
