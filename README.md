@@ -8,7 +8,7 @@
 An end-to-end data engineering pipeline that simulates a real production environment, processing 50,000 historical NYC Taxi records as if they were real-time events. The architecture implements the modern Data Engineering stack: streaming ingestion via Kafka, Data Lake storage with MinIO, declarative transformation with dbt, and full orchestration with Apache Airflow — all containerized with Docker Compose.
 
 **What the pipeline does, from start to finish:**
-1. Reads a CSV with 50K NYC taxi rides
+1. Reads a CSV with 50K NYC taxi rides (https://www.kaggle.com/competitions/new-york-city-taxi-fare-prediction/data?select=train.csv)
 2. Publishes each record as an event to Kafka (simulating real streaming)
 3. A Consumer reads those events in batches and saves them as JSONL files in MinIO (Data Lake)
 4. Airflow, every 10 minutes, detects new files in MinIO, loads them into PostgreSQL, and triggers dbt transformations
